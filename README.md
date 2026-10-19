@@ -57,7 +57,9 @@ a production-style structure, not a production deployment.
 ### [DevOps CI/CD pipeline](https://github.com/ismet1292-wq/05-devops-cicd-pipeline)
 
 HTTP tests gate an image build and Ansible/Compose deployment on a disposable
-runner. CI verifies the running container, unchanged redeployment, and cleanup.
+runner. CI verifies the running container, unchanged redeployment, rejection of
+an intentionally failed release, restoration of the original image and HTTP
+health, and cleanup.
 It does not publish images or automatically deploy to a persistent server.
 
 ## Verified workflow evidence
@@ -71,7 +73,7 @@ future commits have their own checks.
 | 02 Terraform AWS | [a1ef572](https://github.com/ismet1292-wq/02-terraform-aws-infrastructure/actions/runs/39324213787) | Formatting, validation and mocked safeguards; live evidence linked above |
 | 03 Ansible configuration | [a30194d](https://github.com/ismet1292-wq/03-ansible-server-configuration/actions/runs/39324656571) | Nginx configuration, HTTP and unchanged second run |
 | 04 Ansible role | [78639fb](https://github.com/ismet1292-wq/04-ansible-production/actions/runs/39325107122) | Templates, overrides, handlers and repeat runs |
-| 05 CI/CD | [f41b6fe](https://github.com/ismet1292-wq/05-devops-cicd-pipeline/actions/runs/39325755272) | Test, build, disposable deployment, redeployment and cleanup |
+| 05 CI/CD | [b442d6a](https://github.com/ismet1292-wq/05-devops-cicd-pipeline/actions/runs/39326542284) | Test, build, deployment, failed candidate, verified rollback and cleanup |
 
 These projects were built and extended with AI assistance. The repository code,
 workflow logs and deployment evidence establish the tested behavior; they do
@@ -90,7 +92,7 @@ Terraform, Ansible, AWS EC2/VPC/SSM, and SQLite.
 ## Next milestones
 
 - Stronger operational logging and monitoring.
-- Automated release promotion and rollback demonstrations.
+- Automated release promotion beyond the disposable rollback demonstration.
 - Production authentication, TLS, and security review before public hosting.
 
 These milestones are planned, not completed.
