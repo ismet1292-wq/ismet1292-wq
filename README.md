@@ -12,7 +12,8 @@ Seeking entry-level DevOps, Cloud Operations, Infrastructure, and Software Engin
 
 ### [CloudOps Observatory](https://github.com/ismet1292-wq/cloudops-observatory)
 
-An AI-assisted Python monitoring application that I have run, modified, tested, and deployed locally.
+An AI-assisted Python monitoring application validated locally, in Minikube,
+and in a temporary Terraform-managed AWS demonstration.
 
 - HTTP health checks, response latency, and incident tracking.
 - SQLite persistence and a service-status dashboard.
@@ -21,20 +22,65 @@ An AI-assisted Python monitoring application that I have run, modified, tested, 
 - Local Minikube deployment with persistent storage.
 - Verified incident persistence after Kubernetes pod replacement.
 - Public GHCR container releases with latest and commit-SHA tags.
+- AWS incident recovery and history persistence after container replacement and a real host reboot.
+- Verified deletion of the temporary EC2 host, disks, and host IAM resources after the demonstration.
 
-This is a validated local portfolio prototype, not a production cloud service.
+The AWS network foundation remains; the temporary application host was removed.
+This is a portfolio demonstration, not an ongoing production cloud service.
+[AWS results and evidence](https://github.com/ismet1292-wq/cloudops-observatory/blob/main/docs/AWS_DEMO_RESULTS.md).
 
 ### [Dockerized Node.js application](https://github.com/ismet1292-wq/01-docker-node-app)
 
-Hands-on application containerization using Node.js and Docker.
+Node.js HTTP tests and a real Docker smoke test verify health, a non-root user,
+read-only filesystem, and loopback-only publication on a disposable CI runner.
 
 ### [Terraform AWS infrastructure](https://github.com/ismet1292-wq/02-terraform-aws-infrastructure)
 
-Terraform AWS infrastructure configurations validated locally. Validation is not a claim that infrastructure has been deployed to AWS.
+Eight network resources deployed and verified in AWS, with no drift in a
+follow-up Terraform plan. A temporary EC2 host passed health, encrypted-disk,
+IMDSv2 and SSM registration checks, then the host, disk and host IAM resources
+were removed. The network remains; no application was installed in this project.
+[Deployment evidence](https://github.com/ismet1292-wq/02-terraform-aws-infrastructure/blob/main/docs/DEPLOYMENT_RESULTS.md).
+
+### [Ansible server configuration](https://github.com/ismet1292-wq/03-ansible-server-configuration)
+
+Nginx configuration tested on a disposable Ubuntu runner. HTTP verification
+passed and the immediate second run reported zero changes.
+
+### [Role-based Ansible configuration](https://github.com/ismet1292-wq/04-ansible-production)
+
+Reusable role, HTML and server templates, input validation, and validated reload
+handlers. CI verified rendered content, escaped variable overrides, content-only
+updates without reload, and unchanged repeat runs. The repository name describes
+a production-style structure, not a production deployment.
+
+### [DevOps CI/CD pipeline](https://github.com/ismet1292-wq/05-devops-cicd-pipeline)
+
+HTTP tests gate an image build and Ansible/Compose deployment on a disposable
+runner. CI verifies the running container, unchanged redeployment, and cleanup.
+It does not publish images or automatically deploy to a persistent server.
+
+## Verified workflow evidence
+
+Checked October 19, 2026. These links identify specific successful runs;
+future commits have their own checks.
+
+| Project | Passing run | What was exercised |
+|---|---|---|
+| 01 Docker Node app | [45aa587](https://github.com/ismet1292-wq/01-docker-node-app/actions/runs/39326150611) | HTTP tests, image build, runtime checks, cleanup |
+| 02 Terraform AWS | [a1ef572](https://github.com/ismet1292-wq/02-terraform-aws-infrastructure/actions/runs/39324213787) | Formatting, validation and mocked safeguards; live evidence linked above |
+| 03 Ansible configuration | [a30194d](https://github.com/ismet1292-wq/03-ansible-server-configuration/actions/runs/39324656571) | Nginx configuration, HTTP and unchanged second run |
+| 04 Ansible role | [78639fb](https://github.com/ismet1292-wq/04-ansible-production/actions/runs/39325107122) | Templates, overrides, handlers and repeat runs |
+| 05 CI/CD | [f41b6fe](https://github.com/ismet1292-wq/05-devops-cicd-pipeline/actions/runs/39325755272) | Test, build, disposable deployment, redeployment and cleanup |
+
+These projects were built and extended with AI assistance. The repository code,
+workflow logs and deployment evidence establish the tested behavior; they do
+not establish paid client work or independent mastery of every component.
 
 ## Technologies used in my projects
 
-Python, Node.js, Docker, Kubernetes, Minikube, GitHub Actions, Git, Terraform, and SQLite.
+Python, Node.js, Docker, Compose, Kubernetes, Minikube, GitHub Actions, Git,
+Terraform, Ansible, AWS EC2/VPC/SSM, and SQLite.
 
 ## Education
 
@@ -43,8 +89,8 @@ Python, Node.js, Docker, Kubernetes, Minikube, GitHub Actions, Git, Terraform, a
 
 ## Next milestones
 
-- Secure, cost-controlled cloud deployment.
 - Stronger operational logging and monitoring.
-- Documented failure-recovery and rollback demonstrations.
+- Automated release promotion and rollback demonstrations.
+- Production authentication, TLS, and security review before public hosting.
 
 These milestones are planned, not completed.
