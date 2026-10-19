@@ -17,7 +17,8 @@ and in a temporary Terraform-managed AWS demonstration.
 
 - HTTP health checks, response latency, and incident tracking.
 - SQLite persistence and a service-status dashboard.
-- 12 passing automated tests and GitHub Actions CI.
+- 15 passing automated tests and GitHub Actions CI.
+- Worker-aware readiness detects stale monitoring even when the HTTP server responds.
 - Docker containers verified to run as a non-root user.
 - Local Minikube deployment with persistent storage.
 - Verified incident persistence after Kubernetes pod replacement.
@@ -69,6 +70,7 @@ future commits have their own checks.
 
 | Project | Passing run | What was exercised |
 |---|---|---|
+| CloudOps application | [5800e50](https://github.com/ismet1292-wq/cloudops-observatory/actions/runs/39327276685) | 15 tests including worker startup, staleness, recovery and database failure |
 | 01 Docker Node app | [45aa587](https://github.com/ismet1292-wq/01-docker-node-app/actions/runs/39326150611) | HTTP tests, image build, runtime checks, cleanup |
 | 02 Terraform AWS | [a1ef572](https://github.com/ismet1292-wq/02-terraform-aws-infrastructure/actions/runs/39324213787) | Formatting, validation and mocked safeguards; live evidence linked above |
 | 03 Ansible configuration | [a30194d](https://github.com/ismet1292-wq/03-ansible-server-configuration/actions/runs/39324656571) | Nginx configuration, HTTP and unchanged second run |
